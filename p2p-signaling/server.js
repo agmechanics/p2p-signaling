@@ -14,23 +14,24 @@ wss.on("connection", (ws) => {
       if (type === "register") {
         clientId = from;
         clients[from] = ws;
-        console.log(`Registered: ${from}`);
+        console.log(`✅ Registered: ${from}`);
       }
 
       if (to && clients[to]) {
         clients[to].send(JSON.stringify({ type, from, payload }));
+        console.log(`📤 Relayed ${type} from ${from} to ${to}`);
       }
-    } catch (e) {
-      console.error("Failed to handle message:", e.message);
+    } catch (err) {
+      console.error("❌ Message handling error:", err.message);
     }
   });
 
   ws.on("close", () => {
-    if (clientId && clients[clientId]) {
+    if (clientId) {
       delete clients[clientId];
-      console.log(`Disconnected: ${clientId}`);
+      console.log(`❌ Disconnected: ${clientId}`);
     }
   });
 });
 
-console.log("✅ Signaling server running");
+console.log("🚀 Signaling server is running...");
