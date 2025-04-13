@@ -7,7 +7,7 @@ wss.on('connection', ws => {
     ws.on('message', message => {
         const data = JSON.parse(message);
         const { to, from, type, payload } = data;
-
+        console.log("Server deployed via Railway ✅");
         if (type === "register") {
             clients[from] = ws;
         } else if (clients[to]) {
