@@ -1,11 +1,11 @@
 {
-  "name": "signaling-server",
+  "name": "p2p-signaling",
   "version": "1.0.0",
-  "main": "simple-signaling-server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node simple-signaling-server.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "ws": "^8.13.0"
+    "ws": "^8.0.0"
   }
 }
