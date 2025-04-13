@@ -1,5 +1,9 @@
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: process.env.PORT || 3000 });
+const port = process.env.PORT || 3000;
+
+const wss = new WebSocket.Server({ port });
+
+console.log("✅ WebSocket server started on port", port);
 
 let clients = {};
 
@@ -7,7 +11,7 @@ wss.on('connection', ws => {
     ws.on('message', message => {
         const data = JSON.parse(message);
         const { to, from, type, payload } = data;
-        console.log("Server deployed via Railway ✅");
+
         if (type === "register") {
             clients[from] = ws;
         } else if (clients[to]) {
